@@ -76,6 +76,8 @@ optimizer = optim.Adam(net.parameters(), lr=0.001)
 * loss 함수 정의 : CrossEntropyLoss 사용해서 출력과 실제 레이블 간의 오차 계산
 * 옵티마이저 정의 : Adam 옵티마이저 사용하고, 학습률은 0.001
 
+<br><br>
+
 ```python
 for epoch in range(3):
     running_loss = 0.0
