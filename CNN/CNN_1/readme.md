@@ -99,7 +99,7 @@ for epoch in range(3):
 * loss 누적: 각 배치의 loss을 더해 epoch 동안의 총 loss을 계산
 * loss 출력: 각 epoch가 끝날 때마다 평균 loss을 출력
 
-
+<br><br>
 ```python
 # Define metrics
 metric_precision = Precision(task="multiclass", num_classes=7, average="micro")
@@ -118,6 +118,6 @@ recall = metric_recall.compute()
 print(f"Precision: {precision}")
 print(f"Recall: {recall}")
 ```
-### 평
+### 평가
 * _, preds = torch.max(outputs, 1): 출력 중 가장 높은 값을 가진 클래스를 예측으로 선택합니다. torch.max(outputs, 1)은 두 가지 값을 반환하며, 첫 번째는 최대값이고, 두 번째는 해당 값의 인덱스(클래스). 이 코드에서는 클래스 인덱스를 preds로 저장
 * metric_precision(preds, labels) 및 metric_recall(preds, labels): 현재 배치의 예측과 실제 레이블을 사용하여 정밀도와 재현율을 업데이트합니다. 이때 내부적으로 지표 계산에 필요한 값을 축적
