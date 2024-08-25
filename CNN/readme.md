@@ -17,7 +17,7 @@ dataloader_train = DataLoader(
 ```
 
 # 데이터 전처리 및 데이터 로더에 저장
-<span style="color: red;">-</span> train_transforms: 이미지 데이터에 대한 전처리 및 데이터 증강 <br>
+* train_transforms: 이미지 데이터에 대한 전처리 및 데이터 증강 <br>
 <span style="color: red;">-</span> transforms.ToTensor(): 이미지를 PyTorch 텐서로 변환<br>
 <span style="color: red;">-</span> transforms.RandomHorizontalFlip(): 이미지를 수평으로 뒤집기<br>
 <span style="color: red;">-</span> transforms.RandomRotation(45): 이미지를 무작위로 ±45도 회전<br>
