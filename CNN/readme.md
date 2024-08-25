@@ -63,3 +63,15 @@ class Net(nn.Module):
 * nn.Flatten(): 2D 이미지를 1D 벡터로 평탄화
 * classifier: 평탄화된 특징 벡터를 받아 최종적으로 클래스에 대한 출력을 생성
 * nn.Linear(64 * 16 * 16, num_classes): 64개의 16x16 특징 맵을 입력으로 받아, num_classes 개의 출력을 생성하는 완전 연결 계층
+
+<br><br>
+
+```python
+net = Net(num_classes=7)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(net.parameters(), lr=0.001)
+```
+### 학습 설정
+* 7개 클래스 분류할 net모델 정의
+* 손실 함수 정의 : CrossEntropyLoss 사용해서 출력과 실제 레이블 간의 오차 계산
+* 옵티마이저 정의 : Adam 옵티마이저 사용하고, 학습률은 0.001
