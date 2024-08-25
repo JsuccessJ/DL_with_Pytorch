@@ -61,3 +61,21 @@ for epoch in range(3):
     
     epoch_loss = running_loss / len(dataloader_train)
     print(f"Epoch {epoch+1}, Loss: {epoch_loss:.4f}")
+
+
+# Define metrics
+metric_precision = Precision(task="multiclass", num_classes=7, average="micro")
+metric_recall = Recall(task="multiclass", num_classes=7, average="micro")
+
+net.eval()
+with torch.no_grad():
+    for images, labels in dataloader_test:
+        outputs = net(images)
+        _, preds = torch.max(outputs, 1) # 첫번째 값: 최대값, 두번째 값: 해당 인덱스(클래스)
+        metric_precision(preds, labels)
+        metric_recall(preds, labels)
+
+precision = metric_precision.compute()
+recall = metric_recall.compute()
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
