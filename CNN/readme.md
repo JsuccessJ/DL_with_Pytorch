@@ -1,4 +1,4 @@
-''''python
+```python
 train_transforms = transforms.Compose([
     transforms.ToTensor(),
     transforms.RandomHorizontalFlip(),
@@ -14,4 +14,4 @@ dataset_train = ImageFolder(
 dataloader_train = DataLoader(
     dataset_train, shuffle=True, batch_size=16
 )
-''''python
+```python
