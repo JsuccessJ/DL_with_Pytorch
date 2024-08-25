@@ -118,6 +118,34 @@ recall = metric_recall.compute()
 print(f"Precision: {precision}")
 print(f"Recall: {recall}")
 ```
-### 평가
+### precision, recall 평가
 * _, preds = torch.max(outputs, 1): 출력 중 가장 높은 값을 가진 클래스를 예측으로 선택합니다. torch.max(outputs, 1)은 두 가지 값을 반환하며, 첫 번째는 최대값이고, 두 번째는 해당 값의 인덱스(클래스). 이 코드에서는 클래스 인덱스를 preds로 저장
 * metric_precision(preds, labels) 및 metric_recall(preds, labels): 현재 배치의 예측과 실제 레이블을 사용하여 정밀도와 재현율을 업데이트합니다. 이때 내부적으로 지표 계산에 필요한 값을 축적
+* Precision: 0.644032895565033, Recall: 0.644032895565033
+
+<br><br>
+```python
+# Define precision metric
+metric_precision = Precision(
+    task="multiclass", num_classes=7, average=None
+)
+
+net.eval()
+with torch.no_grad():
+    for images, labels in dataloader_test:
+        outputs = net(images)
+        _, preds = torch.max(outputs, 1)
+        metric_precision(preds, labels)
+precision = metric_precision.compute()
+
+# Get precision per class
+precision_per_class = {
+    k: precision[v].item()
+    for k, v 
+    in dataset_test.class_to_idx.items()
+}
+print(precision_per_class)
+```
+### class 단위로 평가
+* {'cirriform clouds': 0.699999988079071, 'clear sky': 0.9384615421295166, 'cumulonimbus clouds': 0.800000011920929, 'cumulus clouds': 0.5819672346115112, 'high cumuliform clouds': 0.474683552980423, 'stratiform clouds': 0.7755101919174194, 'stratocumulus clouds': 0.761904776096344}
+* average = None으로 하면 됨
